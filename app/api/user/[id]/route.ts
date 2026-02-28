@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 
 // DELETE Request
-export async function DELETE(req, {params}) {
+export async function DELETE(req, { params }) {
 
     const { id } = await params;
     const userId = id;
@@ -17,4 +17,27 @@ export async function DELETE(req, {params}) {
     }
 
 
+}
+//Update 
+export async function PUT(req, { params }) {
+     
+    try {
+    const { id } = await params;
+   
+        let body = await req.json();
+        const { name, email } = body;
+
+
+        const updatedUser = await prisma.user.update({
+            where: { id: Number(id) },
+            data: { email,name }
+        });
+
+    return NextResponse.json(updatedUser);
+    } catch (error) {
+ return NextResponse.json(
+      { error: "Failed to update user" },
+      { status: 500 },
+    );
+    }
 }
