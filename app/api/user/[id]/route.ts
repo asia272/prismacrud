@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 
 // DELETE Request
-export async function DELETE(req, { params }) {
+export async function DELETE(req:Request, { params }) {
 
     const { id } = await params;
     const userId = id;
@@ -19,7 +19,7 @@ export async function DELETE(req, { params }) {
 
 }
 //Update 
-export async function PUT(req, { params }) {
+export async function PUT(req:Request, { params }) {
      
     try {
     const { id } = await params;
